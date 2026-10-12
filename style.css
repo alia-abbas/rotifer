@@ -1,13 +1,72 @@
-/* Layout and type modeled on mechanize.work: browser-default serif, narrow column, no decoration. */
+/* Layout and type modeled on mechanize.work: narrow column, no decoration. Font and colors modeled on metr.org. */
+
+/* ===== Colors: light mode =====
+   Every color on the site comes from these variables, so anything you add
+   (paragraphs, lists, links, quotes, tables, code) switches with the theme. */
+:root {
+  color-scheme: light;
+  --bg: #FFFFFF;
+  --text: #4D5561;
+  --heading: #1F2328;
+  --link: #2459C2;
+  --rule: rgba(0, 0, 0, 0.12);       /* <hr>, table and quote borders */
+  --code-bg: #F3F5F9;
+
+  /* Post page header band */
+  --header-bg: rgba(20, 27, 45, 0.85); /* dark ink at 85% */
+  --header-text: #D3D9E5;    /* page links, date, share buttons */
+  --header-heading: #FFFFFF; /* Rotifer + post title */
+  --header-label: #9AA6BC;   /* LAST UPDATED / SHARE */
+  --accent: #8FB3FF;         /* hover color inside the band */
+
+  /* Citation popup */
+  --popup-bg: #FFFFFF;
+  --popup-heading: #222A34;
+  --button: #2B4C8C;
+}
+
+/* ===== Colors: dark mode =====
+   Used when the toggle is set to dark, or when the visitor's system is dark
+   and they haven't picked. Keep the two blocks below identical. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #1B1E24;
+  --text: #BFC6D2;
+  --heading: #EEF1F6;
+  --link: #8FB3FF;
+  --rule: rgba(255, 255, 255, 0.14);
+  --code-bg: #262A33;
+  --header-bg: rgba(20, 27, 45, 0.25); /* dark ink at 25% */
+  --popup-bg: #232731;
+  --popup-heading: #EEF1F6;
+  --button: #3A64B5;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #1B1E24;
+    --text: #BFC6D2;
+    --heading: #EEF1F6;
+    --link: #8FB3FF;
+    --rule: rgba(255, 255, 255, 0.14);
+    --code-bg: #262A33;
+    --header-bg: rgba(20, 27, 45, 0.25);
+    --popup-bg: #232731;
+    --popup-heading: #EEF1F6;
+    --button: #3A64B5;
+  }
+}
 
 html {
   scrollbar-gutter: stable;
+  background: var(--bg);
 }
 
 body {
-  /* Font modeled on metr.org. To go back to the plain serif look, delete these three lines and the Google Fonts links in index.html. */
   font-family: "Instrument Sans", -apple-system, "Helvetica Neue", Arial, sans-serif;
-  color: #4D5561;
+  background: var(--bg);
+  color: var(--text);
   line-height: 1.5;
   font-size: 16px;
   padding: 0 10px;
@@ -20,8 +79,51 @@ main {
   margin: 70px auto 15px;
 }
 
-h2, h3, h4 {
-  color: #1F2328;
+h1, h2, h3, h4, h5, h6 {
+  color: var(--heading);
+}
+
+a {
+  color: var(--link);
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--rule);
+}
+
+blockquote {
+  margin: 1em 0;
+  padding-left: 1em;
+  border-left: 3px solid var(--rule);
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid var(--rule);
+  padding: 0.35em 0.6em;
+}
+
+pre, code {
+  font-family: "Fira Code", Monaco, Consolas, monospace;
+  font-size: 0.875em;
+}
+
+pre, :not(pre) > code {
+  background: var(--code-bg);
+  border-radius: 4px;
+}
+
+pre {
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+:not(pre) > code {
+  padding: 0.1em 0.3em;
 }
 
 .site-title {
@@ -41,4 +143,272 @@ img {
   height: auto;
   display: block;
   margin: 20px auto;
+}
+
+a.plain-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+a.plain-link:hover {
+  text-decoration: underline;
+}
+
+/* ===== Light/dark toggle (sits at the end of the page links) ===== */
+.theme-toggle {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-left: 0.4em;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  vertical-align: -0.15em;
+  opacity: 0.75;
+  transition: opacity 0.2s ease;
+}
+
+.theme-toggle:hover {
+  opacity: 1;
+}
+
+.theme-toggle svg {
+  width: 1em;
+  height: 1em;
+  display: block;
+}
+
+.theme-toggle .icon-sun { display: none; }
+:root[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+:root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+
+/* ===== Post pages (work.html) =====
+   Header layout modeled on metr.org. Colors are set at the top of this file. */
+
+html {
+  overflow-x: clip; /* lets the header band span the full window */
+}
+
+/* Band starts at the very top of the window on post pages */
+body.post-page {
+  margin-top: 0;
+}
+
+.post-header {
+  /* Break out of the 650px column so the band spans the full window */
+  margin: 0 calc(50% - 50vw);
+  padding: 70px 20px 0;
+  background: linear-gradient(to bottom,
+    var(--header-bg) 0%,
+    var(--header-bg) calc(100% - 40px),
+    color-mix(in srgb, var(--header-bg), black 25%) 100%);
+  color: var(--header-text);
+}
+
+.post-header .site-title,
+.post-header .post-title {
+  color: var(--header-heading);
+}
+
+.post-header .site-nav a {
+  color: var(--header-text);
+  transition: color 0.3s ease;
+}
+
+.post-header .site-nav a:hover {
+  color: var(--accent);
+}
+
+/* Title + page links sit in the same 650px column as the home page */
+.post-header-top {
+  max-width: 650px;
+  margin: 0 auto 60px;
+}
+
+.post-header-top .site-title {
+  margin-top: 0;
+}
+
+.post-title {
+  text-align: center;
+  font-size: 44px;
+  font-weight: 500;
+  letter-spacing: -1.2px;
+  line-height: 1.15;
+  margin: 0 auto 50px;
+  max-width: 650px;
+  text-wrap: balance;
+}
+
+.post-meta {
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 1rem 0.5rem 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+}
+
+.post-meta h5 {
+  color: var(--header-label);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  margin: 0 0 0.2rem;
+}
+
+.post-share {
+  margin-left: auto;
+}
+
+.post-share-items {
+  display: flex;
+  gap: 1rem;
+  position: relative;
+}
+
+.post-share-items a,
+.post-share-items button {
+  white-space: nowrap;
+}
+
+.post-share-items a {
+  color: inherit;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: color 0.3s ease;
+}
+
+.post-share-items .copy-link-btn,
+.post-share-items .citation-popup-trigger {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: color 0.3s ease;
+}
+
+.post-share-items a:hover,
+.post-share-items .copy-link-btn:hover,
+.post-share-items .citation-popup-trigger:hover {
+  color: var(--accent);
+}
+
+.post-header + main {
+  margin-top: 2.5rem;
+}
+
+/* Citation popup */
+.citation-popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.citation-popup.active {
+  display: flex;
+}
+
+.citation-popup-content {
+  background: var(--popup-bg);
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  max-width: 600px;
+  width: 90%;
+  max-height: 90vh;
+  overflow: auto;
+  white-space: normal;
+  color: var(--text); /* reset: popup sits inside the header band */
+}
+
+.citation-popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--rule);
+  font-weight: 600;
+  color: var(--popup-heading);
+}
+
+.citation-popup-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text);
+  line-height: 1;
+  padding: 0;
+}
+
+.citation-popup-close:hover {
+  color: var(--popup-heading);
+}
+
+.citation-popup-body {
+  padding: 1.25rem;
+}
+
+.citation-popup-body pre {
+  background: var(--code-bg);
+  border-radius: 4px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 0 0 1rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  min-height: 1.5em;
+}
+
+.citation-popup-body code {
+  font-family: "Fira Code", Monaco, Consolas, monospace;
+  white-space: pre;
+}
+
+.citation-copy-btn {
+  background: var(--button);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background 0.2s ease;
+}
+
+.citation-copy-btn:hover {
+  background: color-mix(in srgb, var(--button), black 15%);
+}
+
+.citation-copy-btn.copied {
+  background: #198754;
+}
+
+@media (max-width: 520px) {
+  .post-title {
+    font-size: 34px;
+  }
+  .post-share {
+    margin-left: 0;
+  }
 }
