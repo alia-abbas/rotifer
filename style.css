@@ -5,7 +5,10 @@ html {
 }
 
 body {
-  line-height: 1.4;
+  /* Font modeled on metr.org. To go back to the plain serif look, delete these three lines and the Google Fonts links in index.html. */
+  font-family: "Instrument Sans", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  color: #4D5561;
+  line-height: 1.5;
   font-size: 16px;
   padding: 0 10px;
   margin: 50px auto;
@@ -15,6 +18,10 @@ body {
 main {
   max-width: 42em;
   margin: 70px auto 15px;
+}
+
+h2, h3, h4 {
+  color: #1F2328;
 }
 
 .site-title {
