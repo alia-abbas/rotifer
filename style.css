@@ -8,7 +8,7 @@
   --bg: #FFFFFF;
   --text: #4D5561;
   --heading: #1F2328;
-  --link: #2459C2;
+  --link: #1F2328;                   /* links: same near-black as headings */
   --rule: rgba(0, 0, 0, 0.12);       /* <hr>, table and quote borders */
   --code-bg: #F3F5F9;
 
@@ -17,7 +17,6 @@
   --header-text: #D3D9E5;    /* page links, date, share buttons */
   --header-heading: #FFFFFF; /* Rotifer + post title */
   --header-label: #9AA6BC;   /* LAST UPDATED / SHARE */
-  --accent: #8FB3FF;         /* hover color inside the band */
 
   /* Citation popup */
   --popup-bg: #FFFFFF;
@@ -33,7 +32,7 @@
   --bg: #1B1E24;
   --text: #BFC6D2;
   --heading: #EEF1F6;
-  --link: #8FB3FF;
+  --link: #EEF1F6;
   --rule: rgba(255, 255, 255, 0.14);
   --code-bg: #262A33;
   --header-bg: rgba(20, 27, 45, 0.25); /* dark ink at 25% */
@@ -48,7 +47,7 @@
     --bg: #1B1E24;
     --text: #BFC6D2;
     --heading: #EEF1F6;
-    --link: #8FB3FF;
+    --link: #EEF1F6;
     --rule: rgba(255, 255, 255, 0.14);
     --code-bg: #262A33;
     --header-bg: rgba(20, 27, 45, 0.25);
@@ -83,7 +82,11 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--heading);
 }
 
-a {
+/* Links stay one color: no change after visiting, hovering or clicking */
+a,
+a:visited,
+a:hover,
+a:active {
   color: var(--link);
 }
 
@@ -215,10 +218,6 @@ body.post-page {
   transition: color 0.3s ease;
 }
 
-.post-header .site-nav a:hover {
-  color: var(--accent);
-}
-
 /* Title + page links sit in the same 650px column as the home page */
 .post-header-top {
   max-width: 650px;
@@ -295,12 +294,6 @@ body.post-page {
   align-items: center;
   gap: 0.25rem;
   transition: color 0.3s ease;
-}
-
-.post-share-items a:hover,
-.post-share-items .copy-link-btn:hover,
-.post-share-items .citation-popup-trigger:hover {
-  color: var(--accent);
 }
 
 .post-header + main {
