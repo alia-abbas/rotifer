@@ -1,0 +1,37 @@
+/* Layout and type modeled on mechanize.work: browser-default serif, narrow column, no decoration. */
+
+html {
+  scrollbar-gutter: stable;
+}
+
+body {
+  line-height: 1.4;
+  font-size: 16px;
+  padding: 0 10px;
+  margin: 50px auto;
+  max-width: 650px;
+}
+
+main {
+  max-width: 42em;
+  margin: 70px auto 15px;
+}
+
+.site-title {
+  margin-bottom: 0.3em;
+}
+
+.site-nav {
+  margin-bottom: 1.5em;
+}
+
+.tagline {
+  margin-top: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 20px auto;
+}

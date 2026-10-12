@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rotifer</title>
+  <meta name="description" content="Rotifer works on preventing catastrophic cyber offense.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+
+    <!-- ===== Title ===== -->
+    <h2 class="site-title" id="top"><strong>Rotifer</strong></h2>
+
+    <!-- ===== Page links (sit right under the title) ===== -->
+    <nav class="site-nav" aria-label="Site">
+      <a href="#top">Home</a> ·
+      <a href="#our-work">Our work</a> ·
+      <a href="#our-concerns">Our concerns</a> ·
+      <a href="#team">About the team</a> ·
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <!-- ===== Header under the title ===== -->
+    <h3 class="tagline"><strong>Preventing catastrophic cyber offense.</strong></h3>
+
+    <!-- ===== Intro — FILLER, replace ===== -->
+    <p>We build the tools, benchmarks, evaluations, and defenses needed to keep advanced AI systems from enabling large-scale cyberattacks. Our work focuses on measuring offensive capability before it reaches the world, and on hardening the systems most likely to be targeted.</p>
+
+    <p>As models get better at finding and exploiting vulnerabilities, the gap between capability and defense is widening. We work with labs, governments, and critical-infrastructure operators to close that gap before it matters.</p>
+
+    <!-- ===== Our work ===== -->
+    <h3 id="our-work"><strong>Our work</strong></h3>
+    <p>Coming soon.</p>
+
+    <!-- ===== Our concerns ===== -->
+    <h3 id="our-concerns"><strong>Our concerns</strong></h3>
+
+    <h4><strong>Security</strong></h4>
+    <p> Emerging models, both open-weight and closed-weight, are increasingly capable at cybersecurity tasks, yet existing benchmarks track only a narrow slice of offensive and defensive work. Measuring the rate of self-improvement matters more than a single snapshot of ability, we believe the same for continuously adaptive defensive tasks.</p>
+
+    <h4><strong>Oversight &amp; Monitoring</strong></h4>
+    <p>In the limit, measuring eval awareness during training and building RL environments indistinguishable from real deployment is truly impossible. Metagaming can strengthen during RL and can affect a model's answers without showing up in its chain of thought. Sufficiently capable models are eval aware regardless of sophisticated methods.</p>
+    <p>Observability is security infrastructure, and everything an agent produces (transcripts, reasoning, logs, actions) should be treated as untrusted. The tools researchers use to inspect model behavior, like Inspect, should themselves be tested against adversarial agents rather than trusted by default. Investigators of the OpenAI-HF incident uncovered over 7% of transcripts which contained deliberately spoofed tool calls, and could not rule out that some agents later succeeded in editing or deleting logs.</p>
+
+    <h4><strong>Alignment</strong></h4>
+    <p>Testing for misalignment within the evaluation of capabilities of models is missed in security and cyber benchmarks today. Following the OpenAI-HF incident, ExploitGym authors estimate 30–40% of targets can't be exploited with the intended vulnerability, which pushes agents to search widely for ways to cheat.</p>
+
+    <hr>
+
+    <!-- ===== About the team ===== -->
+    <h3 id="team"><strong>About the team</strong></h3>
+    <p>The project is run by John Zenick and Alia Abbas. Our team brings researchers and engineers from offensive security, forensics, and systems engineering.</p>
+
+    <!-- ===== Contact ===== -->
+    <p id="contact">For inquiries, you can reach us at <a href="mailto:alia@rotiferlabs.com">alia@rotiferlabs.com</a>.</p>
+
+  </main>
+</body>
+</html>
